@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="master">
+    <div class="plan">
+        <div class="inner">
+            <p class="info">Atualmente você não possui serviços cadastrados. <br> Deseja adicionar um serviço?</p>
+            <form id="register_service_Form" method="POST" action="{{ url_for('default.user', username=session['username']) }}">
+                <ul class="features">
+                    <h4 class="mb-3 pb-3">Registrar-se</h4>
+                    {% if error %}
+                        {% if error[0] == 'register': %}
+                            <li>
+                                <p class="error">{{ error[1] }}</p> 
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                    <li>
+                        <div class="form-group">
+                            <input type="text" class="form-style" placeholder="Nome da aplicação" id="service_name" name="service_name" required>
+                            <i class="input-icon uil uil-user"></i>
+                        </div>
+                    </li>
+                    <li>
+                        <label class="cyberpunk-checkbox-label">
+                            <input type="checkbox" class="cyberpunk-checkbox" id="app_web" name="app_web">
+                            <span><strong>Website </strong></span>(html/css/js)
+                        </label>
+                    </li>
+                    <li>
+                        <label class="cyberpunk-checkbox-label">
+                            <input type="checkbox" class="cyberpunk-checkbox" id="app_android" name="app_android">
+                            <span><strong>Aplicativo </strong>(Android)</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="cyberpunk-checkbox-label">
+                            <input type="checkbox" class="cyberpunk-checkbox" id="app_IOS" name="app_IOS">
+                            <span> <strong>Aplicativo </strong>(IOS)</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="cyberpunk-checkbox-label">
+                            <input type="checkbox" class="cyberpunk-checkbox" id="app_exe" name="app_exe">
+                            <span><strong>Executável </strong>(Windows)</span>
+                        </label>
+                    </li>
+                    <li>
+                        <div class="form-group">
+                            <input type="text" class="form-style" placeholder="Detalhes..." id="app_obs" name="app_obs" required>
+                            <i class="input-icon uil uil-user"></i>
+                        </div>
+                    </li>
+                    <li>
+                        <label class="cyberpunk-checkbox-label">
+                            <span><strong>Complexidade</strong> da aplicação.</span>
+                        </label>
+                        
+                    </li>
+                    <li>
+                        <input id="app_complex" name="app_complex" class="slider" value="50" max="100" min="0" type="range">
+                    </li>
+                </ul>
+                <button class="button" type="submit" href="">Solicitar Aplicação</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

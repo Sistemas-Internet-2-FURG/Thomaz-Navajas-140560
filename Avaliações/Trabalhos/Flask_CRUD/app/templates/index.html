@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="section">
+    <div class="container_login">
+        <div class="row full-height justify-content-center">
+            <div class="col-12 text-center align-self-center py-5">
+                <div class="section pb-5 pt-5 pt-sm-2 text-center">
+                    <h6 class="mb-0 pb-3">
+                        <span>Entrar </span><span> Registrar-se</span>
+                    </h6>
+                        <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
+                        <label for="reg-log"></label>                      
+                        <div class="card-3d-wrap mx-auto">
+                            <div class="card-3d-wrapper">
+                                <div class="card-front">
+                                    <div class="center-wrap">
+                                        <div class="section text-center">
+                                            <form id="loginForm" method="POST" action="/">
+                                            <h4 class="mb-4 pb-3">Entrar</h4>
+                                            {% if error %}
+                                                {% if error[0] == 'login': %}
+                                                    <p class="error">{{ error[1] }}</p> 
+                                                {% endif %}
+                                            {% endif %}
+                                            <div class="form-group">
+                                                <input type="text" class="form-style" placeholder="Nome de usuário" id="username" name="username" required>
+                                                <i class="input-icon uil uil-user"></i>
+                                            </div>	
+                                            <div class="form-group mt-2">
+                                                <input type="password" class="form-style" placeholder="Senha" id="password" name="password" required>
+                                                <i class="input-icon uil uil-lock-alt"></i>
+                                            </div>
+                                            <div class="remeber-forgot">
+                                              <label class="custom-checkbox">
+                                                <input type="checkbox" id="lembrar-me" name="lembrar-me">
+                                                <span class="checkmark"></span> Lembrar-me
+                                              </label>        
+                                            </div>
+                                            <button type="submit" class="btn mt-4">Entrar</button>
+                                            <p class="mb-0 mt-4 text-center"></p> <a href="#">Esqueceu sua senha?</a>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-back">
+                                    <div class="center-wrap">
+                                        <div class="section text-center">
+                                            <form id="registerForm" method="POST" action="/">
+                                            <h4 class="mb-3 pb-3">Registrar-se</h4>
+                                            {% if error %}
+                                                {% if error[0] == 'register': %}
+                                                    <p class="error">{{ error[1] }}</p> 
+                                                {% endif %}
+                                            {% endif %}
+                                            <div class="form-group">
+                                                <input type="text" class="form-style" placeholder="Nome Completo" id="fullname" name="fullname" required>
+                                                <i class="input-icon uil uil-user"></i>
+                                            </div>	
+                                            <div class="form-group mt-2">
+                                                <input type="text" class="form-style" placeholder="Nome de usuário" id="username" name="username" required>
+                                                <i class="input-icon fas fa-hashtag"></i>
+                                            </div>	
+                                            <div class="form-group mt-2">
+                                                <input type="email" class="form-style" placeholder="E-mail" id="email" name="email" required>
+                                                <i class="input-icon uil uil-at"></i>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <input type="password" class="form-style" placeholder="Senha" id="password" name="password" required>
+                                                <i class="input-icon uil uil-lock-alt"></i>
+                                            </div>
+                                            <button href="" class="btn mt-4" type="submit">Registrar</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

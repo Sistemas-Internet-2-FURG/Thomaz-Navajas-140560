@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="master">
+    {% if services %}
+        <div class="master_left">
+            <div class="plan">
+                <div class="inner">
+                    <p class="title">Selecione um aplicativo no lado para editar ou apagá-lo.</p>
+                </div>
+                {% if error %}
+                <li>
+                    <div class="form-group">
+                        <p class="error">{{ error }}</p>
+                    </div>
+                </li>
+                {% endif %}
+                {% for service in services %}
+                    <div id="service_{{ service.id }}" class="service-details" style="display: none;">
+                        <div class="inner">
+                            <form id="edit_service_Form" method="POST" action="{{ url_for('default.user', username=session['username']) }}">
+                                <input type="hidden" name="_method" value="PUT">
+                                <input type="hidden" name="service_id" value="{{ service.id }}">
+                                <ul class="features">
+                                    <br>
+                                    <h4 class="mb-3 pb-3">Deseja editar o aplicativo {{ service.name }}?</h4>
+                                    <li>
+                                        <div class="form-group">
+                                            <input type="text" class="form-style" value="{{ service.name }}" id="service_name" name="service_name" required>
+                                            <i class="input-icon uil uil-user"></i>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <label class="cyberpunk-checkbox-label">
+                                            {% if service.app_exe %}
+                                            <input type="checkbox" class="cyberpunk-checkbox" id="app_exe" name="app_exe" value="1" checked>
+                                            {% else %}
+                                            <input type="checkbox" class="cyberpunk-checkbox" id="app_exe" name="app_exe">
+                                            {% endif %}
+                                            <span><strong>Executável </strong>(Windows)</span>
+                                        </label>
+
+                                    </li>
+                                    <li>
+                                        <label class="cyberpunk-checkbox-label">
+                                            {% if service.app_android %}
+                                            <input type="checkbox" class="cyberpunk-checkbox" id="app_android" name="app_android" value="1" checked>
+                                            {% else %}
+                                            <input type="checkbox" class="cyberpunk-checkbox" id="app_android" name="app_android">
+                                            <span><strong>Aplicativo </strong>(Android)</span>
+                                            {% endif %}
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="cyberpunk-checkbox-label">
+                                            {% if service.app_IOS %}
+                                            <input type="checkbox" class="cyberpunk-checkbox" id="app_IOS" name="app_IOS" value="1" checked>
+                                            {% else %}
+                                            <input type="checkbox" class="cyberpunk-checkbox" id="app_IOS" name="app_IOS">
+                                            {% endif %}
+                                            <span> <strong>Aplicativo </strong>(IOS)</span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="cyberpunk-checkbox-label">
+                                            {% if service.app_web %}
+                                            <input type="checkbox" class="cyberpunk-checkbox" id="app_web" name="app_web" value="1" checked>
+                                            {% else %}
+                                            <input type="checkbox" class="cyberpunk-checkbox" id="app_web" name="app_web">
+                                            {% endif %}
+                                            <span><strong>Website </strong></span>(html/css/js)
+                                        </label>
+
+                                    </li>
+                                    <li>
+                                        <div class="form-group">
+                                            <input type="text" class="form-style" value="{{ service.obs }}" id="app_obs" name="app_obs" required>
+                                            <i class="input-icon uil uil-user"></i>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <label class="cyberpunk-checkbox-label">
+                                            <span><strong>Complexidade</strong> da aplicação.</span>
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input id="app_complex" name="app_complex" class="slider" value="{{ service.app_complex }}" max="100" min="0" type="range">
+                                    </li>
+                                </ul>
+                                <button class="button" type="submit" >Editar Aplicação</button>
+                            </form>
+                            <form id="edit_service_Form" method="POST" action="{{ url_for('default.user', username=session['username']) }}">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="service_id" value="{{ service.id }}">
+                                <button class="button" type="submit" >Apagar Aplicação</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="plan">
+            <ul class="app_grid">
+                {% for service in services %}
+                    <a class="inner_app" onclick="toggleServiceDetails('service_{{ service.id }}')">
+                        <p class="title">{{ service.name }}</p>
+                            <ul class="features">
+                                <li>
+                                    <span >Status: <strong>{{ service.status }}</strong></span>
+                                </li>
+                                <li>
+                                    <span>Tecnologias:</span>
+                                </li>
+                                <div class="tec">
+                                    {% if service.app_web %}
+                                    <li>
+                                        <span class="icon">
+                                            <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                                <path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+                                            </svg>
+                                        </span>
+                                        <span><strong>Website</strong></span>
+                                    </li>
+                                    {% endif %}
+                                    {% if service.app_android %}
+                                    <li>
+                                        <span class="icon">
+                                            <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                                <path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+                                            </svg>
+                                        </span>
+                                        <span>Aplicativo <strong>Android</strong></span>
+                                    </li>
+                                    {% endif %}
+                                    {% if service.app_IOS %}
+                                    <li>
+                                        <span class="icon">
+                                            <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                                <path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+                                            </svg>
+                                        </span>
+                                        <span>Aplicativo <strong>IOS</strong></span>
+                                    </li>
+                                    {% endif %}
+                                    {% if service.app_exe %}
+                                    <li>
+                                        <span class="icon">
+                                            <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                                <path fill="currentColor" d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z"></path>
+                                            </svg>
+                                        </span>
+                                        <span>Executável <strong>Windows</strong></span>
+                                    </li>
+                                    {% endif %}
+                                    <li>
+                                        <span>Complexidade: <strong>{{ service.app_complex }}%</strong></span>
+                                    </li>
+                                </div>
+                                <p class="info">{{ service.obs }}</p>
+                            </ul>
+                    </a>
+                {% endfor %}
+                    <div class="inner_app" onclick="redirect_add_service()">
+                        +
+                    </div>
+            </ul>
+        </div>
+        {% else %}
+            <div class="plan">
+                    <div class="inner">
+                        <span class="pricing">
+                            <span>
+                                Bem vindo(a) <small>{{ session['username'] }}</small>
+                            </span>
+                        </span>
+                        <br>
+                        <p class="info">Atualmente você não possui serviços cadastrados. Deseja adicionar um serviço?</p>
+                        <ul class="features">
+                            <li>
+                                <span>Aplicações <strong>WEB</strong></span>
+                            </li>
+                            <li>
+                                <span>Aplicativos <strong>Android/IOS</strong></span>
+                            </li>
+                            <li>
+                                <span>Executável <strong>Windows/Linux</strong></span>
+                            </li>
+                        </ul>
+                        <div class="action">
+                        <a class="button" href="{{ url_for('default.add_service') }}">
+                            Solicitar Serviço
+                        </a>
+                        </div>
+                    </div>
+            </div>
+        {% endif %}
+    </div>
+    {% if services %}
+        
+    {% endif %}
+</div>
+<script>
+    function toggleServiceDetails(serviceId) {
+    // Get all service-details elements
+    var serviceDetailsElements = document.querySelectorAll('.service-details');
+
+    // Iterate through each service-details element
+    serviceDetailsElements.forEach(function(element) {
+        // If the current element's ID matches the provided serviceId
+        if (element.id === serviceId) {
+        // Toggle the display property of the clicked service
+        element.style.display = element.style.display === 'none' ? 'block' : 'none';
+        } else {
+        // Hide all other service-details elements
+        element.style.display = 'none';
+        }
+    });
+    }
+    function redirect_add_service(){
+        window.location.href = "{{ url_for('default.add_service') }}";
+    }
+
+</script>
+{% endblock %}
