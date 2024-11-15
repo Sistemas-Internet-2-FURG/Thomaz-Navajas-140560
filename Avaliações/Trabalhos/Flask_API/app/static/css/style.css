@@ -1,0 +1,853 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
+body{ /* estilo global do body */
+	font-family: 'Poppins', sans-serif; /* Define a fonte global da página */
+	font-weight: 300; /* Define a espessura fonte */
+	line-height: 1.7; /* Define o espaçamento entre linhas */
+	color: #6197e7; /* Define a cor do texto */
+	background-color: #07000a ; /* Define a cor de fundo da página */
+  margin: 0; /* Remove as margens padrão do body */
+  display: flex; /* Garante que o conteúdo principal seja centralizado vertical e horizontalmente */
+  flex-direction: column; /* Garante que o conteúdo principal seja centralizado vertical e horizontalmente */
+}
+
+/* Remove o sublinhado dos links ao passar o mouse */
+a:hover {
+	text-decoration: none;
+}
+
+/* Define a cor dos links */
+.link { 
+  color: #6197e7;
+}
+
+/* Muda a cor dos links ao passar o mouse */
+.link:hover {
+  color: #c4c3ca;
+}
+
+/* Estilo para parágrafos */
+p {
+  font-weight: 500; /* Define a espessura da fonte */
+  font-size: 14px; /* Define o tamanho da fonte */
+}
+
+/* Estilo para cabeçalhos h4 */
+h4 {
+  font-weight: 600; /* Define a espessura da fonte */
+}
+
+/* Ajuste o espaçamento entre as palavras "Entrar" e "Registrar-se" */
+h6.mb-0.pb-3 span {
+  word-spacing: 2em; /* Ajuste o valor conforme necessário */
+}
+
+
+/* Estilo para botões */
+.btn{  
+  border-radius: 6px; /* Bordas arredondadas do botão */
+  height: 44px; /* Altura do botão */
+  font-size: 13px; /* Tamanho da fonte do texto no botão */
+  font-weight: 600; /* Espessura da fonte (negrito) */
+  text-transform: uppercase; /* Converte o texto para maiúsculas */
+  -webkit-transition : all 200ms linear; /* Transição suave para navegadores WebKit */
+  transition: all 200ms linear; /* Transição suave para outros navegadores */
+  padding: 0 30px; /* Preenchimento interno (espaçamento) horizontal */
+  letter-spacing: 1px; /* Espaçamento entre letras */
+  display: -webkit-inline-flex; /* Alinha o botão como um flexível inline para navegadores WebKit */
+  display: -ms-inline-flexbox; /* Alinha o botão como um flexível inline para navegadores Microsoft */
+  display: inline-flex; /* Alinha o botão como um flexível inline para outros navegadores */
+  align-items: center; /* Alinha os itens ao centro verticalmente */
+  background-color: #9abcf0; /* Cor de fundo do botão */
+  color: #000000; /* Cor do texto do botão */
+}
+
+.btn:hover{
+  background-color: #000000; /* Muda a cor de fundo quando o botão é hover */
+  color: #9abcf0; 
+}
+
+/* Grupo de botões no cabeçalho */
+.btn-group {
+  display: inline-block; /* Faz com que o grupo de botões se ajuste ao conteúdo */
+  vertical-align: middle; /* Alinha verticalmente o grupo de botões */
+}
+
+/* Estilo dos botões no cabeçalho */
+.btnheader {
+  border-radius: 6px;  /* Define bordas arredondadas nos botões */
+  height: 44px; /* Define a altura dos botões */
+  font-size: 13px; /* Define o tamanho da fonte nos botões */
+  font-weight: 600; /* Define a espessura da fonte nos botões */
+  text-transform: uppercase; /* Transforma o texto em maiúsculas */
+  -webkit-transition: all 200ms linear; /* Transição suave para browsers WebKit */
+  transition: all 200ms linear; /* Transição suave para outros browsers */
+  padding: 0 30px; /* Define o preenchimento horizontal dos botões */
+  letter-spacing: 1px; /* Define o espaçamento entre letras */
+  display: inline-flex; /* Exibe os botões em linha com flexbox */
+  align-items: center; /* Alinha os itens do botão verticalmente */
+  background-color: #9abcf0; /* Define a cor de fundo dos botões */
+  color: #000000; /* Define a cor do texto dos botões */
+  margin: 10px; /* Adiciona margem ao redor dos botões */
+  text-decoration: none; /* Remove o sublinhado do texto do botão */
+}
+
+/* Estilo do botão ao passar o mouse */
+.btnheader:hover {
+  background-color: #000000; /* Muda a cor de fundo quando o botão é hover */
+  color: #9abcf0; /* Muda a cor do texto quando o botão é hover */
+  box-shadow: 0 8px 24px 0 rgba(16,39,112,.2); /* Adiciona uma sombra ao botão quando hover */
+}
+
+/* Estilo para seções */
+.section{
+  position: relative; /* Define a posição relativa para permitir posicionamento absoluto dentro */
+  width: 100%; /* Faz a seção ocupar toda a largura */
+  display: block; /* Exibe a seção como um bloco */
+}
+
+/* Estilo para a área de "lembrar-me" e "esqueceu a senha" */
+.section .remember-forgot {
+  display: flex; /* Exibe os itens em linha */
+  justify-content: flex-end; /* Alinha os itens ao final do contêiner */
+  align-items: center; /* Alinha os itens verticalmente ao centro */
+  font-size: 14.5px; /* Define o tamanho da fonte */
+  margin: 0 0 14px; /* Define a margem inferior */
+}
+
+/* Estilo para o rótulo dentro da área "lembrar-me" */
+.remember-forgot label {
+  display: flex; /* Exibe o rótulo em linha */
+  align-items: center; /* Alinha os itens verticalmente ao centro */
+}
+
+/* Estilo para a caixa de seleção dentro da área "lembrar-me" */
+.remember-forgot input[type=checkbox]{
+  accent-color: #808080;
+  margin-right: 10px;
+  width: auto;
+}
+
+/* Define a altura mínima para a página */
+.full-height{
+  min-height: 100vh; /* Faz com que o contêiner ocupe a altura total da viewport(preencher toda a altura visível da janela do navegador.) */
+}
+
+/* Esconde o elemento com id "reg-log" */
+#reg-log{
+  display:none;
+}
+
+/* Estilo para caixas de seleção personalizadas */
+.checkbox:checked + label,
+.checkbox:not(:checked) + label{
+  position: relative; /* Define a posição relativa para permitir posicionamento absoluto dos elementos filhos */
+  display: block; /* Exibe o rótulo como um bloco */
+  text-align: center; /* Alinha o texto ao centro */
+  width: 60px; /* Define a largura do rótulo */
+  height: 16px; /* Define a altura do rótulo */
+  border-radius: 8px; /* Define bordas arredondadas */
+  padding: 0; /* Remove o preenchimento */
+  margin: 10px auto;  /* Define margem vertical e centraliza o rótulo */
+  cursor: pointer; /* Muda o cursor para uma mãozinha ao passar sobre o rótulo */
+  background-color: #6197e7; /* Define a cor de fundo inicial */
+}
+
+/* Estilo para o estado da caixa de seleção marcada */
+.checkbox:checked + label:before {
+  transform: translateX(44px) rotate(-270deg); /* Move e rotaciona o ícone quando a caixa está marcada */
+}
+
+/* Estilo para o estado da caixa de seleção marcada */
+.checkbox:checked + label:before,
+.checkbox:not(:checked) + label:before{
+  position: absolute; /* Define a posição absoluta para o pseudo-elemento */
+  display: block;  /* Exibe o pseudo-elemento como um bloco */
+  width: 36px; /* Define a largura */
+  height: 36px; /* Define a altura */
+  border-radius: 50%; /* Define bordas totalmente arredondadas */
+  color: #9abcf0; /* Define a cor do texto */
+  background-color: #020305; /* Define a cor de fundo */
+  font-family: 'unicons'; /* Define a fonte para o ícone */
+  content: '\eb4f'; /* Define o conteúdo do ícone */
+  z-index: 20; /* Define o índice z para garantir que o ícone fique acima dos outros elementos */
+  top: -10px; /* Define a posição superior */
+  left: -10px; /* Define a posição à esquerda */
+  line-height: 36px; /* Define o espaçamento entre linhas */
+  text-align: center; /* Alinha o texto ao centro */
+  font-size: 24px; /* Define o tamanho da fonte */
+  transition: all 0.5s ease; /* Define uma transição suave */
+}
+
+/* Estilo para o wrapper 3D do cartão */
+.card-3d-wrap {
+  position: relative; /* Define a posição relativa para permitir posicionamento absoluto dos elementos filhos */
+  width: 440px; /* Define a largura */
+  max-width: 100%; /* Define a largura máxima */
+  height: 450px; /* Define a altura */
+  -webkit-transform-style: preserve-3d; /* Preserva o estilo 3D em navegadores WebKit */
+  transform-style: preserve-3d; /* Preserva o estilo 3D */
+  perspective: 800px; /* Define a perspectiva 3D */
+  margin-top: 60px; /* Adiciona margem superior */
+  
+}
+
+/* Estilo para o wrapper centralizado dentro do cartão 3D */
+.center-wrap{
+  position: absolute; /* Define a posição absoluta */
+  width: 100%; /* Define a largura */
+  padding: 0 35px; /* Define o preenchimento horizontal */
+  top: 50%; /* Define a posição vertical centralizada */
+  left: 0; /* Alinha à esquerda */
+  transform: translate3d(0, -50%, 35px) perspective(100px); /* Move e perspectiva o wrapper */
+  z-index: 20; /* Define o índice z */
+  display: block; /* Exibe o wrapper como um bloco */
+}
+
+/* Estilo para o wrapper 3D do cartão */
+.card-3d-wrapper {
+  width: 100%; /* Define a largura */
+  height: 100%; /* Define a altura */
+  position:absolute; /* Define a posição absoluta */
+  -webkit-transform-style: preserve-3d; /* Preserva o estilo 3D em navegadores WebKit */
+  transform-style: preserve-3d; /* Preserva o estilo 3D */
+  transition: all 600ms ease-out; /* Define uma transição suave */
+}
+
+.card-3d-wrapper-crud {
+  width: 100%; /* Define a largura */
+  height: 100%; /* Define a altura */
+  position:absolute; /* Define a posição absoluta */
+  -webkit-transform-style: preserve-3d; /* Preserva o estilo 3D em navegadores WebKit */
+  transform-style: preserve-3d; /* Preserva o estilo 3D */
+  transition: all 300ms ease-out; /* Define uma transição suave */
+}
+
+/* Estilo para a frente do cartão */
+.card-front, .card-back {
+  width: 100%; /* Define a largura */
+  height: 100%; /* Define a altura */
+  background-color:#2b2e38; /* Define a cor de fundo */
+  position: absolute; /* Define a posição absoluta */
+  border-radius: 6px; /* Define bordas arredondadas */
+  transform-style: preserve-3d; /* Preserva o estilo 3D */
+}
+
+.card-add, .card-info, .card-delete {
+  width: 100%; /* Define a largura */
+  height: 100%; /* Define a altura */
+  background-color:#2b2e38; /* Define a cor de fundo */
+  position: absolute; /* Define a posição absoluta */
+  border-radius: 6px; /* Define bordas arredondadas */
+  transform-style: preserve-3d; /* Preserva o estilo 3D */
+}
+
+/* Estilo para a parte traseira do cartão */
+.card-back {
+  transform: rotateY(180deg); /* Rotaciona a parte traseira do cartão */
+}
+
+/* Estilo para o cartão 3D quando a caixa de seleção está marcada */
+.checkbox:checked ~ .card-3d-wrap .card-3d-wrapper {
+  transform: rotateY(180deg);
+}
+
+/* Estilo para formulários */
+.form-style {
+  padding: 13px 20px; /* Define o preenchimento interno */
+  padding-left: 55px; /* Define o preenchimento à esquerda */
+  height: 50px; /* Define a altura */
+  width: 100%; /* Define a largura */
+  font-weight: 500; /* Define a espessura da fonte */
+  border-radius: 4px; /* Define bordas arredondadas */
+  font-size: 14px; /* Define o tamanho da fonte */
+  line-height: 32px; /* Define o espaçamento entre linhas */
+  letter-spacing: 0.5px; /* Define o espaçamento entre letras */
+  outline: none; /* Remove o contorno */
+  color: #c4c3ca; /* Define a cor do texto */
+  background-color: #1f2029; /* Define a cor de fundo */
+  border: none; /* Remove a borda */
+  -webkit-transition: all 200ms linear; /* Transição suave para navegadores WebKit */
+  transition: all 200ms linear; /* Transição suave */
+  box-shadow: 0 4px 8px 0 rgba(21,21,21,.2); /* Adiciona sombra */
+}
+
+/* Estilo para grupos de formulários */
+.form-group{ 
+  position: relative; /* Define a posição relativa para permitir posicionamento absoluto dos elementos filhos */
+  display: block; /* Exibe o grupo de formulários como um bloco */
+  margin: 0; /* Remove a margem */
+  padding: 0; /* Remove o preenchimento */
+}
+
+/* Estilo para formulários quando focados ou ativos */
+.form-style:focus,
+.form-style:active {
+  border: none; /* Remove a borda ao focar ou ativar o formulário */
+  outline: none; /* Remove o contorno padrão ao focar */
+  box-shadow: 0 4px 8px 0 rgba(21,21,21,.2);  /* Adiciona uma sombra ao redor do campo */
+}
+
+/* Estiliza o ícone dentro do campo de entrada */
+.input-icon {
+  position: absolute; /* Estiliza o ícone dentro do campo de entrada */
+  top: 0;  /* Alinha o ícone ao topo do contêiner */
+  left: 18px; /* Espaço do lado esquerdo do contêiner */
+  height: 48px; /* Define a altura do ícone */
+  font-size: 24px; /* Define o tamanho da fonte do ícone */
+  line-height: 48px; /* Alinha verticalmente o ícone no centro */
+  text-align: left; /* Alinha o texto (ícone) à esquerda */
+  -webkit-transition: all 200ms linear; /* Transição suave para navegadores WebKit */
+  transition: all 200ms linear; /* Transição suave para outros navegadores */
+}
+
+
+/* Estrela de fundo fixa */
+.stars{
+  z-index: -1; /* Coloca as estrelas atrás de outros elementos */
+  position: fixed; /* Mantém as estrelas fixas na tela */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.perfil_foto{
+  width:25px;
+  border-radius: 10px;
+}
+
+/* Estilo para logotipo com nome */
+.logo_com_nome{
+  width: 250px; /* Define a largura do logotipo */
+
+}
+
+/* Alinha o contêiner do nome do logotipo verticalmente */
+.logo_name_container{
+  display: inline-block; /* Faz com que o contêiner ocupe apenas o espaço necessário */
+  vertical-align: middle; /* Alinha verticalmente com outros elementos inline */
+}
+
+/* Esconde a checkbox padrão */
+.custom-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+/* Estilo para a caixa de seleção personalizada */
+.custom-checkbox {
+  display: flex; /* Usa flexbox para layout */
+  align-items: center; /* Alinha itens ao centro verticalmente */
+  justify-content: flex-end; /* Alinha o conteúdo ao final do contêiner */
+  font-size: 14.5px; /* Define o tamanho da fonte */
+}
+
+/* Estiliza a caixa de seleção */
+.custom-checkbox .checkmark {
+  position: relative; /* Posiciona o elemento de forma relativa dentro do contêiner */
+  height: 16px; /* Define a altura da caixa de seleção */
+  width: 16px; /* Define a largura da caixa de seleção */
+  background-color:#1f2029; /* Cor de fundo inicial da checkbox (cinza) */
+  border-radius: 3px; /* Arredonda as bordas da caixa de seleção */
+  display: inline-block; /* Faz com que a caixa de seleção ocupe apenas o espaço necessário */
+  margin-right: 10px; /* Espaçamento à direita da caixa de seleção */
+}
+
+/* Quando a checkbox está marcada */
+.custom-checkbox input:checked + .checkmark {
+  background-color: #181717; /* Cor de fundo quando marcado */
+  border-color: #6197e7; /* Cor da borda quando marcada */
+}
+
+/* Estilo para o "check" dentro da caixa de seleção */
+.custom-checkbox .checkmark:after {
+  content: ""; /* Adiciona um conteúdo vazio */
+  position: absolute; /* Posiciona o "check" de forma absoluta dentro da caixa de seleção */
+  display: none; /* Esconde o "check" por padrão */
+}
+
+/* Exibe o "check" dentro da checkbox quando está marcada */
+.custom-checkbox input:checked + .checkmark:after {
+  display: block; /* Exibe o "check" */
+  left: 6px; /* Alinha o "check" à esquerda */
+  top: 4px; /* Alinha o "check" ao topo */
+  width: 4px; /* Define a largura do "check" */
+  height: 6px; /* Define a altura do "check" */
+  border: solid #6197e7; /* Define a cor e estilo da borda do "check" */
+  border-width: 0 2px 2px 0; /* Define a largura das bordas do "check" */
+  transform: rotate(46deg); /* Rotaciona o "check" para a posição correta */
+}
+
+/* Estilo para mensagens de erro */
+.error{
+  color: red; /* Cor do texto das mensagens de erro */
+  margin-top: 5px; /* Remove a margem superior */
+  margin-bottom: 6px; /* Remove a margem inferior */
+}
+
+/* Estilos para o botão de usuário */
+.btn-usuario {
+  border: 2px solid #450b7cc2; /* Remove a borda padrão */
+  color:#6558d3; /* Cor do texto */
+  background-color: rgba(10, 10, 10, 0.541) !important;
+  padding: 10px 20px; /* Define o espaçamento interno */
+  min-width: 30px;
+  text-align: center; /* Centraliza o texto */
+  text-decoration: none; /* Remove sublinhado */
+  display: inline-block; /* Define o botão como um bloco inline */
+  font-size: 13px; /* Tamanho da fonte */
+  font-weight: 600; /* Negrito */
+  text-transform: uppercase; /* Letras maiúsculas */
+  border-radius: 6px; /* Bordas arredondadas */
+  letter-spacing: 1px; /* Espaçamento entre letras */
+  cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+  transition: background-color 0.3s ease; /* Transição suave para a cor do fundo */
+  box-shadow: -1px -3px 10px #553f66, 3px 3px 10px #38234b,
+    inset 3px 3px 8px #212121, inset -3px -3px 8px #212121;
+  background: linear-gradient(145deg, #2e2d2d, #212121);
+}
+
+.btn-usuario:hover {
+  box-shadow: 1px 1px 13px #20232e, -1px -1px 13px #545b78;
+  color: #6558d3; /* Cor do texto ao passar o mouse */
+  transition: 500ms; /* Transição suave */
+}
+
+.btn-usuario:active {
+  box-shadow: 1px 1px 13px #20232e, -1px -1px 33px #545b78;
+  color: #425475 !important; /* Cor do texto ao clicar */
+  transition: 100ms; /* Transição mais rápida ao clicar */
+}
+
+/* Estilos para o dropdown */
+.btn-group {
+  position: relative; /* Necessário para o posicionamento absoluto do dropdown-menu */
+  display: inline-block; 
+}
+
+/* Estilos para o dropdown */
+.dropdown-menu {
+  display: none; /* Esconde o menu por padrão */
+  position: absolute; /* Permite que o menu fique posicionado abaixo do botão */
+  background-color: rgba(61, 59, 59, 0.233); /* Cor de fundo do menu */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra para o menu */
+  border-radius: 4px; /* Bordas arredondadas */
+  min-width: 160px; /* Largura mínima do menu */
+  z-index: 1; /* Garante que o menu fique acima de outros elementos */
+  top: 100%; /* Posiciona o menu logo abaixo do botão */
+  left: 10%; /* Alinha o menu à esquerda do botão */
+  transform: translateX(-50%); /* Centraliza o menu em relação ao botão */
+  margin-top: 10px; /* Adiciona um espaço entre o botão e o menu */
+}
+
+/* Estilos para os links no dropdown */
+.dropdown-menu a {
+  color: #ffffff; /* Cor do texto */
+  padding: 12px 16px; /* Espaçamento interno dos links */
+  text-decoration: none; /* Remove sublinhado */
+  display: block; /* Faz os links ocuparem toda a largura do menu */
+}
+
+/* Mudança de cor ao passar o mouse nos links */
+.dropdown-menu a:hover {
+  background-color: #302e2e; /* Cor de fundo ao passar o mouse */
+}
+
+/* Estilização do checkbox estilo cyberpunk */ 
+.cyberpunk-checkbox {
+  appearance: none; /* Remove o estilo padrão do checkbox */
+  width: 20px; /* Define a largura do checkbox */
+  height: 20px; /* Define a altura da checkbox */
+  border: 2px solid #6558d3; /* Adiciona uma borda ao checkbox */
+  border-radius: 5px; /* Arredonda os cantos da da checkbox */
+  background-color: transparent; /* Deixa o fundo transparente */
+  display: inline-block; /* Exibe o checkbox como um bloco inline(exibido em linha) */
+  position: relative; /* Posição relativa */
+  margin-right: 10px; /* Espaçamento à direita do checkbox */
+  cursor: pointer; /* Altera o cursos ao passar sobre o checkbox */
+}
+
+/* Estilização interna do checkbox antes de ser marcado */
+.cyberpunk-checkbox:before {
+  content: ""; /* Adicion conteúdo vazio pra estilização */
+  background-color: #6558d3; /* Cor de fundo do estado não-marcado */
+  display: block; /* Exibe o elemento como um bloco */
+  position: absolute; /* Posição absoluta em relação ao checkbox */
+  top: 50%; /* Centraliza verticalmente */
+  left: 50%; /* Centraliza horizontalmente */
+  transform: translate(-50%, -50%) scale(0); /* Inicialmente oculto e centralizado */
+  width: 10px; /* Largura do conteúdo interno */
+  height: 10px; /* Altura do conteúdo interno */
+  border-radius: 3px; /* Arredonda os cantos */
+  transition: all 0.3s ease-in-out; /* Transição suave para o estado marcado */
+}
+
+/* Estilização do checkbox quando está marcado */
+.cyberpunk-checkbox:checked:before {
+  transform: translate(-50%, -50%) scale(1); /* Expande e centraliza o conteúdo interno */
+}
+
+/* Estilização do rótulo associado ao checkbox */
+.cyberpunk-checkbox-label {
+  font-size: 18px; /* Tamanho da fonte do rótulo */
+  color: #425475; /* Cor do texto do rótulo */
+  cursor: pointer; /* Altera o cursor ao passar sobre o rótulo */
+  user-select: none; /* Impede que o texto seja selecionado */
+  display: flex; /* Exibe o rótulo como um flexbox */
+  align-items: center; /* Alinha o conteúdo centralmente no eixo vertical */
+}
+
+/* Estilo para o cabeçalho */
+.sticky-top {
+  width: 100%; /* Fica fixo no topo da página e ocupa toda a largura da página */
+  position: sticky; /* Mantém o cabeçalho fixo no topo */
+  top: 0; /* Fixa o cabeçalho no topo da página */
+  z-index: 1000; /* Garante que o cabeçalho fique acima do conteúdo */
+  background-color: transparent !important; /* Define a cor de fundo do cabeçalho */
+  border-bottom: 1px transparent!important; /* Adiciona uma borda inferior ao cabeçalho */
+  padding: 10px 20px; /* Define o espaçamento interno do cabeçalho */
+}
+
+.navbar {
+  background-color: rgba(10, 10, 10, 0.541) !important ; /* Cor do fundo do cabeçalho */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.733) !important ; /* Adiciona uma borda inferior ao cabeçalho */
+  padding: 10px 20px; /* Espaçamento interno do cabeçalho */
+}
+
+/* Estilo para o conteúdo principal */
+.container {
+  width: 100vw; /* Faz o contêiner ocupar toda a largura da página */
+  position: relative;
+  padding: 10px 20px; /* Define o espaçamento interno do cabeçalho */
+  margin:10px;
+  margin-top: 30px;
+}
+
+/* Conteúdo estendido com z-index maior */
+.extended-content{
+  z-index: 1; /* Define a ordem de empilhamento do conteúdo estendido */
+  position: relative;
+  top: 30;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Estilização da classe "master" */
+.master{
+  display: flex; /* Usar flexbox para centralizar o conteúdo */
+  justify-content: center; /* Centralizar horizontalmente */
+  align-items: center; /* Opcional: centralizar verticalmente se o contêiner tiver altura */
+  height: 80vh; /* Opcional: altura total da tela */
+  padding: 30px;
+  margin-left: 1%;
+}
+
+/* Estilização da seção esquerda da classe "master" */
+.master_left{
+  width: 45%; /* Largura de 35% */
+  height: 100%; /* Altura total */
+  margin: 10px;
+}
+
+/* Estilização da seção direita da classe "master" */
+.master_right{
+  display: flex;
+  flex-direction: row; /* Organiza os itens em coluna */
+  width: 75%; /* Largura de 75% */
+  height: 100%; /* Altura total */
+  margin: 5px;
+}
+
+.container_login {
+  align-self: center; /* Centraliza os itens horizontalmente */
+  align-items: center;
+  position: relative;
+}
+
+/* Estilo para o conteúdo estendido */
+.extended-content {
+  z-index: 1; /* Garante que o conteúdo extendido fique acima de outros elementos */
+  width: 100%; /* Faz o conteúdo ocupar toda a largura disponível */
+  max-width: 100%; /* Define a largura máxima do conteúdo */
+  align-self: center;
+}
+
+/* Estilização da grid "app_grid" */
+.app_grid{
+  display: inline-grid; /* Exibe como uma grade inline */
+  grid-template-columns: [first] 33% [second] 33% [third] 33%; /* Três colunas de 33% cada */
+  grid-template-rows: auto; /* Altura automática das linhas */
+  padding:0%;
+  width: 80%; /* Ajuste a largura conforme necessário */
+  margin: 2px; /* Centraliza a grid se a largura for menor que a largura do contêiner pai */
+}
+
+/* Estilização de um plano de serviço */
+.plan {
+  display: flex;
+  flex-direction: column; /* Organiza os itens em coluna */
+  border-radius: 16px; /* Bordas arredondadas */
+  box-shadow: 0 30px 30px -25px rgba(0, 38, 255, 0.205); /* Sombra do plano */
+  background-color: rgba(20, 20, 20, 0.308) !important; /* Cor de fundo */
+  color: #697e91; /* Cor do texto */
+  width: 96%; /* Garante que o plano ocupe toda a largura disponível */
+  padding: 10px; /* Adiciona um pouco de preenchimento interno */
+  margin-right: 20px;
+}
+
+/* Estilização de textos em negrito dentro da classe "plan" */
+.plan strong {
+  font-weight: 600; /* Negrito */
+  color: #425275; /* Cor do texto */
+}
+
+/* Estilo específico para o texto de aviso */
+.inner .info {
+  font-size: 1.5rem; /* Ajuste o tamanho da fonte conforme necessário */
+  color: #425275; /* Cor do texto, ajuste conforme necessário */
+  font-weight: bold; /* Opcional: deixa o texto em negrito */
+  text-align: center; /* Centraliza o texto */
+  margin-bottom: 1rem; /* Ajuste a margem inferior para aproximar da lista */
+}
+
+
+/* Posicionando o "deseja add um serviço.." no meio */
+.inner {
+  display: flex;
+  flex-direction: column; /* Organiza os itens em coluna */
+  align-items: center; /* Centraliza horizontalmente */
+  justify-content: center; /* Centraliza verticalmente */
+  text-align: center; /* Centraliza o texto dentro do elemento */
+  height: 100%; /* Ajusta a altura para preencher o espaço disponível */
+}
+
+/* Texto do perfil "selecione um aplicativo no lado..." */
+.info2 {
+  font-size: 1.2rem; /* tamanho do texto */
+  color: #425275; /* Cor do texto, ajuste se necessário */
+  text-align: center; /* Centraliza o texto */
+}
+
+/* Estilo da classe .title */
+.title {
+  font-size: 1.5rem; /* Ajuste o tamanho da fonte conforme necessário */
+  color: #425275; /* Cor do texto */
+  font-weight: bold; /* Define o texto como negrito */
+  text-align: center; /* Centraliza o texto */
+  margin-bottom: 1rem; /* Espaçamento abaixo do título, ajuste conforme necessário */
+}
+
+/* Estilo para a lista de recursos */
+.features {
+  margin-top: -0.8rem; /* Ajuste a margem superior para aproximar do aviso */
+}
+
+/* Estilização interna do plano de serviço */
+.plan .inner {
+  display: absolute; /* Exibe como um bloco absoluto */
+  grid-column-start: auto; /* Início automático da coluna */
+  grid-column-end: auto; /* Fim automático da coluna */
+  grid-row-start: auto; /* Início automático da linha */
+  grid-row-end: auto; /* Fim automático da linha */
+  cursor: pointer; /* Altera o cursor ao passar sobre o elemento */
+  padding: 10px; /* Espaçamento interno */
+  background-color: rgba(20, 20, 20, 0.308) !important; /* Cor de fundo */
+  border-radius: 12px; /* Bordas arredondadas */
+  margin: 10px; /* Margem ao redor do elemento */
+  align-items: center; /* Alinha os itens no centro verticalmente */
+}
+
+/* Estilização da subclasse "inner_app" dentro do plano de serviço */
+.plan .inner_app {
+  display: absolute; /* Exibe como um bloco absoluto */
+  grid-column-start: auto; /* Início automático da coluna */
+  grid-column-end: auto; /* Fim automático da coluna */
+  grid-row-start: auto; /* Início automático da linha */
+  grid-row-end: auto; /* Fim automático da linha */
+  cursor: pointer; /* Altera o cursor ao passar sobre o elemento */
+  padding: 10px; /* Espaçamento interno */
+  background-color: rgba(20, 20, 20, 0.308) !important; /* Cor de fundo */
+  border-radius: 12px; /* Bordas arredondadas */
+  margin: 10px; /* Margem ao redor do elemento */
+  align-items: center; /* Alinha os itens no centro verticalmente */
+}
+
+/* Mudança de cor de fundo ao passar o mouse sobre "inner_app" */
+.plan .inner_app:hover {
+  background-color: rgba(97, 97, 97, 0.185) !important ; /* Cor de fundo ao passar o mouse */
+}
+
+/* Mudança de cor de fundo ao clicar em "inner_app" */
+.plan .inner_app:active {
+  background-color: rgba(197, 197, 197, 0.308) !important ; /* Cor de fundo ao clicar */
+}
+
+/* Estilização da classe "tec" dentro do plano de serviço */
+.plan .tec {
+  align-items: center; /* Alinha os itens no centro verticalmente */
+  padding: 10px; /* Espaçamento interno */
+  background-color: rgba(66, 66, 66, 0.308) !important; /* Cor de fundo */
+  border-radius: 12px; /* Bordas arredondadas */
+  position: relative; /* Posição relativa */
+}
+
+/* Estilização da classe "pricing" dentro do plano de serviço */
+.plan .pricing {
+  position: absolute; /* Exibe como um bloco absoluto */
+  top: 0; /* Alinhamento ao topo */
+  right: 0; /* Alinhamento à direita */
+  background-color: rgba(20, 20, 20, 0.308) !important; /* Cor de fundo */
+  border-radius: 99em 0 0 99em; /* Bordas arredondadas no topo e à direita */
+  display: flex; /* Exibe como um flexbox */
+  align-items: center; /* Alinha os itens no centro verticalmente */
+  padding: 0.625em 0.75em; /* Espaçamento interno */
+  font-size: 1.25rem; /* Tamanho da fonte */
+  font-weight: 600; /* Negrito */
+  color: #425475; /* Cor do texto */
+}
+
+/* Estilização da classe "pricing small" dentro do plano de serviço */
+.plan .pricing small {
+  color: #707a91; /* Cor do texto */
+  font-size: 0.75em; /* Tamanho da fonte */
+  margin-left: 0.25em; /* Margem à esquerda */
+}
+
+/* Estilização da classe "title" dentro do plano de serviço */
+.plan .title {
+  font-weight: 600; /* Negrito */
+  font-size: 1.25rem; /* Tamanho da fonte */
+  color: #425675; /* Cor do texto */
+}
+
+/* Margem superior para os elementos seguintes à classe "title" */
+.plan .title + * {
+  margin-top: 0.75rem; /* Margem superior de 0.75rem */
+}
+
+/* Margem superior para os elementos seguintes à classe "info" */
+.plan .info + * {
+  margin-top: 1rem; /* Margem superior de 1rem */
+}
+
+/* Define as características de layout para a lista de recursos dentro do plano */
+.plan .features {
+  display: flex; /* Usa o modelo de layout flexível para alinhar os itens dentro da lista */
+  flex-direction: column; /* Organiza os itens em uma coluna, um abaixo do outro */
+  align-items: center; /* Centraliza os itens horizontalmente no contêiner */
+  padding-right: 35px; /* Adiciona um preenchimento de 35px à direita da lista */
+}
+
+/* Estilo para cada item da lista de recursos dentro do plano */
+.plan .features li {
+  display: flex; /* Aplica o layout flexível para alinhar o conteúdo dentro do item */
+  align-items: center; /* Alinha verticalmente o conteúdo ao centro do item */
+  gap: 0.5rem; /* Define um espaçamento de 0.5rem entre os elementos internos do item */
+}
+
+/* Adiciona um espaçamento superior de 0.75rem entre cada item na lista de recursos */
+.plan .features li + * {
+  margin-top: 0.75rem;
+}
+
+/* Adiciona um espaçamento superior de 1.25rem entre a lista de recursos e o próximo elemento */
+.plan .features + * {
+  margin-top: 1.25rem;
+}
+
+/* Define o layout para a seção de ação do plano */
+.plan .action {
+  width: 100%; /* Faz com que a seção ocupe 100% da largura disponível */
+  display: flex; /* Usa o modelo de layout flexível para organizar os elementos */
+  align-items: center; /* Alinha verticalmente os itens ao centro da seção */
+  justify-content: end; /* Alinha horizontalmente os itens ao final (direita) da seção */
+}
+
+/* Estilo do botão na seção de ação do plano */
+.plan .button {
+  background-color: #6558d3; /* Cor de fundo roxa do botão */
+  border-radius: 6px; /* Adiciona bordas arredondadas ao botão */
+  color: #fff; /* Cor do texto do botão */
+  font-weight: 500; /* Define a espessura da fonte para 500 (seminegrito) */
+  font-size: 1.125rem; /* Define o tamanho da fonte para 1.125rem */
+  text-align: center; /* Centraliza o texto dentro do botão */
+  border: 0; /* Remove a borda padrão */
+  outline: 0; /* Remove o contorno padrão ao focar no botão */
+  width: 100%; /* Faz com que o botão ocupe 100% da largura disponível */
+  padding: 0.625em 0.75em; /* Define o preenchimento interno do botão */
+  text-decoration: none; /* Remove qualquer sublinhado ou decoração de texto */
+}
+
+/* Estilo do botão quando o mouse passa por cima ou quando está em foco */
+.plan .button:hover, .plan .button:focus {
+  background-color: #4133B7; /* Altera a cor de fundo do botão ao passar o mouse ou focar */
+}
+
+/* Estilo do botão */
+.button {
+  background-color: #6558d3; /* Cor de fundo roxa do botão */
+  border-radius: 6px; /* Adiciona bordas arredondadas ao botão */
+  color: #fff; /* Cor do texto do botão */
+  font-weight: 500; /* Define a espessura da fonte para 500 (seminegrito) */
+  font-size: 1.125rem; /* Define o tamanho da fonte para 1.125rem */
+  text-align: center; /* Centraliza o texto dentro do botão */
+  border: 0; /* Remove a borda padrão */
+  outline: 0; /* Remove o contorno padrão ao focar no botão */
+  width: 100%; /* Faz com que o botão ocupe 100% da largura disponível */
+  padding: 0.625em 0.75em; /* Define o preenchimento interno do botão */
+  text-decoration: none; /* Remove qualquer sublinhado ou decoração de texto */
+  margin-bottom: 1em; /* Adiciona espaço abaixo do botão */
+}
+
+/* Estilo do botão quando o mouse passa por cima ou quando está em foco */
+.button:hover, .button:focus {
+  background-color: #4133B7; /* Altera a cor de fundo do botão ao passar o mouse ou focar */
+}
+
+
+
+/* Estilo para o slider (barra de rolagem) */
+.slider {
+  -webkit-appearance: none; /* Remove o estilo padrão do navegador (WebKit) */
+  width: 300px; /* Define a largura do slider */
+  height: 10px; /* Define a altura do slider */
+  border-radius: 5px; /* Adiciona bordas arredondadas ao slider */
+  background-color: #4158D0; /* Cor de fundo do slider */
+  background-image: linear-gradient(43deg, #46d041 0%, #c6c850 46%, #ff7070 100%); /* Gradiente de cores no fundo */
+  outline: none; /* Remove o contorno padrão */
+  opacity: 0.7; /* Define a opacidade para 70% */
+  -webkit-transition: .2s; /* Transição suave de opacidade em 0.2 segundos (WebKit) */
+  transition: opacity .2s; /* Transição suave de opacidade em 0.2 segundos */
+}
+
+/* Estilo do "thumb" (botão deslizante) do slider no WebKit */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Remove o estilo padrão do navegador (WebKit) */
+  appearance: none; /* Remove o estilo padrão do navegador */
+  width: 20px; /* Define a largura do botão deslizante */
+  height: 20px; /* Define a altura do botão deslizante */
+  border-radius: 50%; /* Adiciona bordas arredondadas ao botão deslizante */
+  background-color: #4c00ff; /* Cor de fundo do botão deslizante */
+  background-image: linear-gradient(160deg, #4900f5 0%, #80D0C7 100%); /* Gradiente de cores no botão deslizante */
+  cursor: pointer; /* Define o cursor como "pointer" ao passar o mouse */
+}
+
+/* Estilo do "thumb" (botão deslizante) do slider no Firefox */
+.slider::-moz-range-thumb {
+  width: 20px; /* Define a largura do botão deslizante */
+  height: 20px; /* Define a altura do botão deslizante */
+  border-radius: 50%; /* Adiciona bordas arredondadas ao botão deslizante */
+  background-color: #0093E9; /* Cor de fundo do botão deslizante */
+  background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%); /* Gradiente de cores no botão deslizante */
+  cursor: pointer; /* Define o cursor como "pointer" ao passar o mouse */
+}
+
+.plane .service-details {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-top: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); 
+  /* Add more styles as needed */
+}

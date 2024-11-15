@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <title>Cloud Verse</title>
+    <!--inclui arquivo css do bootstrap -->
+    <!--inclui arquivo css pra icones do unicons a partir de uma url -->
+    <!--inclui versão externa do css do bootstrap a partir de uma cdn -->
+    <!--inclui arquivo css personalizado localizado na pasta do projeto -->
+    <!-- Define as configurações de viewport para dispositivos móveis, ajustando a escala e o tamanho do conteúdo para se ajustar à tela -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  </head>
+  <body>
+  <!-- cria um elemento canvas com id rainfall pra animação de chuva, classe 'stars' pra estilização.  -->
+  <canvas id="rainfall" class="stars"></canvas>
+  <!-- fixa o conteúdo no topo da página durante o rolar -->
+    <div class="sticky-top">
+    <!-- Define uma barra de navegação com a classe navbar e um fundo escuro. O atributo data-bs-theme="dark" aplica um tema escuro para a barra de navegação. -->
+      <nav class="navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
+      <!-- Conteiner para a logo da pagina -->
+        <div class="logo_name_container">
+        <!-- imagem da logo com a fonte definida com uma classe (logo_com_nome) pra estilização -->
+          <img src="{{ url_for('static', filename='img/logo_com_nome1.png') }}" alt="Cloud Verse Logo" class="logo_com_nome">
+        </div>
+        <!-- cria um grupo de botoes adicional pro dropdown do usuario -->
+        <div class="btn-group">
+          {% if 'username' in session: %}
+            <div class="btn-group">
+              <!-- adiciona um manipulador de eventos Js para chamar a função toggleDropdown() quando clicado-->
+              <!-- classe btn-usuario pra estilizar -->
+              <button class ="btn-usuario" onclick="toggleDropdown()">{{ session['username'] }}
+                <img src="{{ url_for('static', filename='img/perfil_' + session['perfil_photo']|string + '.png') }}", class="perfil_foto">
+
+
+              </button>
+              <!-- define o menu suspenso que aparece quando o botao é clicado -->
+              <div class="dropdown-menu">
+              <!-- link pra página de perfil (ainda nao tem) -->
+                <a href="{{ url_for('default.index') }}">Perfil</a>
+                <!-- link pra ação de logout com o destino -->
+                <a href="{{ url_for('default.logout') }}">Sair</a>
+              </div>              
+            </div>
+            <!-- Finaliza a verificação condicional pra autenticação do user-->
+          {% endif %}
+        </div>
+      </nav>
+    </div>
+      <!-- Inicia a div 'extended-content' que vai ser preenchida com o conteúdo específico das páginas -->
+      <div class="extended-content">
+      <!-- Define um bloco de conteúdo onde o conteúdo específico de cada página vai ser inserido -->
+        {% block content %}
+        <!-- Finaliza o bloco de donteúdo -->
+        {% endblock %}
+      </div>
+    <script>
+        // Obtém o elemento canvas e seu contexto de renderização 2D
+        const canvas = document.getElementById('rainfall');
+        const ctx = canvas.getContext('2d');
+
+        // Define o tamanho do canvas para coincidir com o tamanho da janela
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Array pra armazenar as gotas de chuva
+        const raindrops = [];
+
+        // Função pra criar uma nova gota de chuva 
+        function createRaindrop() {
+            // Gera posições aleatórias pra gota de chuva
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height;
+            // Gera uma velocidade aleatória pra gota de chuva
+            var velocity = Math.random() * 0.7 + 0.3;
+            // Define a velocidade e direção da gota de chuva
+            const speed = [[velocity, 0], [-velocity, 0]][Math.floor(Math.random() * 2)];
+
+            //Define o comprimento e a cor da gota de chuva
+            const length = 4;
+            const color = ["#160518","#040125","#000f0e","#3b3544","#32293f","#5b457a","#120820","#242241","#2a574c","#2a3a57","#000000","#130022"][Math.floor(Math.random() * 13)];
+
+            // Adiciona a nova gota de chuva ao array
+            raindrops.push({ x, y, speed, length, color });
+        }
+
+        // Função pra atualizar as posições das gotas de chuva
+        function updateRaindrops() {
+
+            // Itera sobre cada gota de chuva
+            for (let i = 0; i < raindrops.length; i++) {
+                const raindrop = raindrops[i];
+
+                // Atualiza a posição da gota de chuva com base na velocidade
+                raindrop.y += raindrop.speed[0];
+                raindrop.x += raindrop.speed[1];
+
+                // Remove gotas de chuva que saíram da tela
+                if (raindrop.y > canvas.height) {
+                    raindrops.splice(i, 1); // Remove a gota do array
+                    i--; // Ajusta o índice após a remoção
+                }
+            }
+        }
+
+        // Função pra desenhar as gotas de chuva no canvas
+        function drawRaindrops() {
+
+            // Limpa o canvas pra desenhar o próximo frame
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Itera sobre cada gota de chuva
+            for (let i = 0; i < raindrops.length; i++) {
+              const raindrop = raindrops[i];
+
+              // Define a cor da gota de chuva
+              ctx.strokeStyle = raindrop.color;
+              ctx.lineWidth = 4;
+              ctx.beginPath();
+
+              // Desenha a gota de chuva como uma linha vertical
+              ctx.moveTo(raindrop.x, raindrop.y);
+              ctx.lineTo(raindrop.x, raindrop.y + raindrop.length);
+              ctx.stroke();
+            }
+        }
+
+        // Função pra animar as gotas de chuva
+        function animate() {
+            createRaindrop(); // Cria novas gotas
+            updateRaindrops(); // Atualiza a posição das gotas
+            drawRaindrops(); // Desenha as gotas de chuva
+            requestAnimationFrame(animate); // Solicita o próximo frame de animação
+        }
+
+        // Inicia a animação
+        animate();
+    </script>
+    <script>
+      // Função pra alternar a visibilidade do menu dropdown
+      function toggleDropdown() {
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+
+        // Alterna a exibição entre 'block' e 'none'
+        dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+      }
+    
+      // Adiciona um evento de clique no documento
+      document.addEventListener('click', function(event) {
+        const button = document.querySelector('.btn-usuario');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+
+        // Fechar o dropdown se clicar fora do botão ou fora do menu
+        if (!button.contains(event.target) && !dropdownMenu.contains(event.target)) {
+          dropdownMenu.style.display = 'none';
+        }
+      });
+    </script>
+  </body>
+</html>
